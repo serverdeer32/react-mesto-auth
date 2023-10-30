@@ -94,7 +94,7 @@ function App() {
           setLoggedIn(true)
           navigate('/')
         })
-        .catch(err => console.log(`Ошибкак авторизации при повторном входе ${err}`))
+        .catch(err => console.log(`Ошибка авторизации при повторном входе ${err}`))
     } else {
       setLoggedIn(false)
     }
@@ -122,7 +122,6 @@ function App() {
         setCurrentUser(res)
         closeAllPopups()
         reset()
-        setIsSend(false)
       })
       .catch((err) => console.error(`Не удалось обновить данные профиля: ${err}`))
       .finally(() => setIsSend(false))
@@ -161,6 +160,7 @@ function App() {
       .then(res => {
         localStorage.setItem('jwt', res.token)
         setLoggedIn(true)
+        setUserData(email)
         navigate('/')
       })
       .catch((err) => {
